@@ -1,0 +1,47 @@
+﻿<Page
+    x:Class="Sharks.Search"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Sharks"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="List" Label="Playlist" Click="Playlist_OnClick"></AppBarButton>
+        </CommandBar>
+    </Page.BottomAppBar>   
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="PartyShark" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+            <TextBlock Text="Add song:" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal">
+            <TextBox HorizontalContentAlignment="Center" x:Name="SearchBox" Height="40" MinWidth="250" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <Button Background="DeepPink" Margin="10,0,0,0" Content="Search" HorizontalAlignment="Right" Click="ButtonBase_OnClick" VerticalAlignment="Top"/>
+        </StackPanel>
+        <ListView Margin="20,20,20,0" Grid.Row="2" x:Name="SearchResult" ItemsSource="{Binding}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock VerticalAlignment="Center" Margin="10,0,0,0" Grid.Column="1" TextWrapping="Wrap" Text="{Binding}" FontSize="{ThemeResource TextStyleLargeFontSize}"></TextBlock>
+                        <Button Background="MediumTurquoise" Grid.Column="0" Content="Add" DataContext="{Binding}" x:Name="addButton"></Button>
+                    </Grid>        
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ProgressRing Grid.Row="0" IsActive="False"></ProgressRing>
+    </Grid>
+</Page>
