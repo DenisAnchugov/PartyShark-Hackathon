@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Phone.UI.Input;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -26,14 +27,21 @@ namespace Sharks
         public Search()
         {
             this.InitializeComponent();
-            HardwareButtons.BackPressed +=HardwareButtons_BackPressed;
+            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
         }
 
-        void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
+        private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
-            if (this.Frame.CanGoBack)
+            var frame = Window.Current.Content as Frame;
+            if (frame == null)
             {
-                this.Frame.GoBack();
+                return;
+            }
+
+            if (frame.CanGoBack)
+            {
+                frame.GoBack();
+                e.Handled = true;
             }
         }
 
@@ -48,14 +56,36 @@ namespace Sharks
 
         private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            DataAccess access = new DataAccess();
-            List<SearchEntity> results = await access.GetSongs(SearchBox.Text);
+            Loading.IsActive = true;
+            var access = new DataAccess();
+            var results = await access.GetSongs(SearchBox.Text);
             SearchResult.DataContext = results;
+            Loading.IsActive = false;
         }
 
         private void Playlist_OnClick(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof (MainPage));
+            Frame.Navigate(typeof(MainPage));
+        }
+
+        private async void Send_OnClick(object sender, RoutedEventArgs e)
+        {
+            var button = sender as AppBarButton;
+            if (button != null)
+            {
+                var song = button.DataContext as SearchEntity;
+                var access = new DataAccess();
+                MessageDialog message;
+                if (await access.SendAsync(song, 11) == "Error")
+                {
+                    message = new MessageDialog("We could not connect to the server.", "Error");
+                }
+                else
+                {
+                    message = new MessageDialog("Your song has been added.", "Success!");
+                }
+                await message.ShowAsync();
+            }
         }
     }
 }

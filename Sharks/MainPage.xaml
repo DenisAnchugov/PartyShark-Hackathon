@@ -5,23 +5,34 @@
     xmlns:local="using:Sharks"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d">
+    <Page.Background>
+        <ImageBrush Stretch="Fill" ImageSource="Assets/SplashScreen.png"/>
+    </Page.Background>
 
     <Page.BottomAppBar>
-       <CommandBar>
-           <AppBarButton Icon="Find" Label="Find song" Click="ButtonBase_OnClick"></AppBarButton>
-       </CommandBar>
+        <CommandBar Background="#E51F1F1F">
+            <AppBarButton Icon="Refresh" Label="Refresh" Click="ButtonBase_OnClick"></AppBarButton>
+        </CommandBar>
     </Page.BottomAppBar>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <TextBlock Text="PartyShark" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock Text="Playlist:" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
-        </StackPanel>
-        
+        <TextBlock Grid.Row="0" Margin="10" Text="Playlists" FontSize="{ThemeResource TextStyleExtraExtraLargeFontSize}"></TextBlock>
+        <ListView Background="#7F0A0101" Grid.Row="1" x:Name="Playlists" ItemsSource="{Binding}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Button BorderThickness="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" Click="Playlist_OnClick" FontSize="{ThemeResource TextStyleLargeFontSize}" Content="{Binding}"></Button>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ProgressRing x:Name="Loading" Grid.Row="1" IsActive="False"></ProgressRing>
     </Grid>
 </Page>
