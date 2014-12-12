@@ -11,6 +11,7 @@ namespace Sharks
 {
     class DataAccess
     {
+        const string Url = "http://partyshark.cloudapp.net/api/";
         public async Task<List<SearchEntity>> GetSongsAsync(string searchParameter)
         {
             var httpClient = new HttpClinet();
@@ -20,7 +21,7 @@ namespace Sharks
         public async Task<Playlist> GetPlaylistAsync(int id)
         {
             var httpClient = new HttpClinet();
-            var response = await httpClient.GetAsync(new Uri("http://172.16.0.127:8000/api/playlists/" + id));
+            var response = await httpClient.GetAsync(new Uri(Url + "playlists/" + id));
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Playlist>(response));
         }
         public async Task<string> SendAsync(SearchEntity song, int playlistId)
@@ -28,12 +29,12 @@ namespace Sharks
             var httpClient = new HttpClinet();
             var s = new Song() { soundCloudID = song.id, songTitle = song.title, isPlayed = false, playlist = playlistId};
             string message = await Task.Factory.StartNew(() => JsonConvert.SerializeObject(s));
-            return await httpClient.PostAsync(new Uri("http://172.16.0.127:8000/api/songs/"), message);
+            return await httpClient.PostAsync(new Uri(Url + "songs/"), message);
         }
         public async Task<List<Playlist>> GetPlayListsAsync()
         {
             var httpClient = new HttpClinet();
-            var response = await httpClient.GetAsync(new Uri("http://172.16.0.127:8000/api/playlists/"));
+            var response = await httpClient.GetAsync(new Uri(Url + "playlists/"));
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<Playlist>>(response));           
         }
         public async Task VoteAsync(int id, char t)
@@ -41,7 +42,7 @@ namespace Sharks
             try
             {
                 var httpClient = new HttpClinet();
-                await httpClient.GetAsync(new Uri("http://172.16.0.127:8000/api/vote/" + id + "/" + t));
+                await httpClient.GetAsync(new Uri(Url + "api/vote/" + id + "/" + t));
             }
             catch (Exception exception)
             {               

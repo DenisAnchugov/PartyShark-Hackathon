@@ -12,7 +12,7 @@
     </Page.Background>
 
     <Page.BottomAppBar>
-        <CommandBar Background="#E51F1F1F">
+        <CommandBar Background="#7F52BBB4">
             <AppBarButton Icon="Add" Label="Add song" Click="Add_OnClick"></AppBarButton>           
         </CommandBar>
     </Page.BottomAppBar>
@@ -23,7 +23,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock x:Name="PlaylistName" Grid.Row="0" Margin="10" Text="{Binding}" FontSize="{ThemeResource TextStyleExtraExtraLargeFontSize}"></TextBlock>
-        <ListView Grid.Row="1" Background="#7F0A0101" x:Name="PlayListView" ItemsSource="{Binding songs}">
+        <ListView Grid.Row="1" Background="#B2000000" x:Name="PlayListView" ItemsSource="{Binding songs}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,10,0,0">

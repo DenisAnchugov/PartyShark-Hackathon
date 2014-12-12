@@ -12,7 +12,7 @@
 
 
     <Page.BottomAppBar>
-        <CommandBar Background="#E51F1F1F">
+        <CommandBar Background="#7F52BBB4">
             <AppBarButton Icon="List" Label="Playlist" Click="Playlist_OnClick"></AppBarButton>
         </CommandBar>
     </Page.BottomAppBar>
@@ -30,7 +30,7 @@
             <TextBox Grid.Column="0" HorizontalContentAlignment="Center" x:Name="SearchBox" Height="40" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="14,0,5,5"/>
             <AppBarButton Margin="0,0,10,0" Grid.Column="1" IsCompact="True" Icon="Find" HorizontalAlignment="Right" Click="ButtonBase_OnClick"/>
         </Grid>
-        <ListView Background="#7F0A0101" Grid.Row="2" x:Name="SearchResult" ItemsSource="{Binding}">
+        <ListView Background="#B2000000" Grid.Row="2" x:Name="SearchResult" ItemsSource="{Binding}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,10,0,0">

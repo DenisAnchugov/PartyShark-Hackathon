@@ -11,7 +11,7 @@
     </Page.Background>
 
     <Page.BottomAppBar>
-        <CommandBar Background="#E51F1F1F">
+        <CommandBar Background="#7F52BBB4">
             <AppBarButton Icon="Refresh" Label="Refresh" Click="ButtonBase_OnClick"></AppBarButton>
         </CommandBar>
     </Page.BottomAppBar>
@@ -21,7 +21,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Margin="10" Text="Playlists" FontSize="{ThemeResource TextStyleExtraExtraLargeFontSize}"></TextBlock>
-        <ListView Background="#7F0A0101" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="1" x:Name="Playlists" ItemsSource="{Binding}">
+        <ListView Background="#B2000000" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="1" x:Name="Playlists" ItemsSource="{Binding}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
