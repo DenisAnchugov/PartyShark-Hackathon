@@ -21,14 +21,14 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions> 
+        </Grid.RowDefinitions>
         <Grid Margin="0,0,0,5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <TextBox Grid.Column="0" HorizontalContentAlignment="Center" x:Name="SearchBox" Height="40" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="14,0,5,5"/>
-            <AppBarButton Margin="0,0,10,0" Grid.Column="1" IsCompact="True" Icon="Find" HorizontalAlignment="Right" Click="ButtonBase_OnClick"/>
+            <AppBarButton Margin="0,0,10,0" Grid.Column="1" IsCompact="True" Icon="Find" HorizontalAlignment="Right" Click="Search_OnClick"/>
         </Grid>
         <ListView Background="#B2000000" Grid.Row="2" x:Name="SearchResult" ItemsSource="{Binding}">
             <ListView.ItemTemplate>
@@ -39,7 +39,7 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <AppBarButton Margin="0,0,10,0" HorizontalContentAlignment="Right" Grid.Column="0" IsCompact="True" DataContext="{Binding}" Icon="Add" Background="Black" Click="Send_OnClick"></AppBarButton>
-                        <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1" TextWrapping="Wrap" Text="{Binding}" FontSize="{ThemeResource TextStyleLargeFontSize}"></TextBlock>           
+                        <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1" TextWrapping="Wrap" Text="{Binding}" FontSize="{ThemeResource TextStyleLargeFontSize}"></TextBlock>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

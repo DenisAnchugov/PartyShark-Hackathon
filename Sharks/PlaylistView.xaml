@@ -13,7 +13,7 @@
 
     <Page.BottomAppBar>
         <CommandBar Background="#7F52BBB4">
-            <AppBarButton Icon="Add" Label="Add song" Click="Add_OnClick"></AppBarButton>           
+            <AppBarButton Icon="Add" Label="Add song" Click="Add_OnClick"></AppBarButton>
         </CommandBar>
     </Page.BottomAppBar>
 
@@ -31,7 +31,7 @@
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>                           
+                            <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <AppBarButton Grid.Column="0" DataContext="{Binding}" IsCompact="True" Icon="Like" Click="Like_OnClick"></AppBarButton>
                         <TextBlock Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding karma }"></TextBlock>

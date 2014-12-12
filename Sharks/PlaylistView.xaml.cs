@@ -1,31 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.Phone.UI.Input;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
 namespace Sharks
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class PlaylistView : Page
     {
-        public int CurrentPlaylist { get; set; }
+        private DataAccess dataAccess;
         public PlaylistView()
         {
             this.InitializeComponent();
@@ -47,17 +32,9 @@ namespace Sharks
             }
         }
 
-        /// <summary>
-        /// Invoked when this page is about to be displayed in a Frame.
-        /// </summary>
-        /// <param name="e">Event data that describes how this page was reached.
-        /// This parameter is typically used to configure the page.</param>
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-
-            var parameter = e.Parameter as Playlist;
-            PlaylistName.DataContext = parameter.name;
-            CurrentPlaylist = parameter.id;
+            PlaylistName.DataContext = App.CurrentPlaylist.name;
             await UpdateAsync();
         }
 
@@ -66,10 +43,10 @@ namespace Sharks
             Loading.IsActive = true;
             try
             {
-                var access = new DataAccess();
-                if (CurrentPlaylist != 0)
+                dataAccess = new DataAccess();
+                if (App.CurrentPlaylist.id != 0)
                 {
-                    var playlist = await access.GetPlaylistAsync(CurrentPlaylist);
+                    var playlist = await dataAccess.GetPlaylistAsync(App.CurrentPlaylist.id);
                     PlayListView.DataContext = playlist;
                 }
             }
@@ -95,11 +72,11 @@ namespace Sharks
             var appBarButton = sender as AppBarButton;
             if (appBarButton != null)
             {
-                Song song = appBarButton.DataContext as Song;
-                DataAccess access = new DataAccess();
+                var song = appBarButton.DataContext as Song;
+                dataAccess = new DataAccess();
                 try
                 {
-                    if (song != null) await access.VoteAsync(song.id, 'u');
+                    if (song != null) await dataAccess.VoteAsync(song.id, 'u');
                 }
                 catch (Exception)
                 {
@@ -117,11 +94,11 @@ namespace Sharks
             var appBarButton = sender as AppBarButton;
             if (appBarButton != null)
             {
-                Song song = appBarButton.DataContext as Song;
-                DataAccess access = new DataAccess();
+                var song = appBarButton.DataContext as Song;
+                dataAccess = new DataAccess();
                 try
                 {
-                    if (song != null) await access.VoteAsync(song.id, 'd');
+                    if (song != null) await dataAccess.VoteAsync(song.id, 'd');
                 }
                 catch (Exception)
                 {
