@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Page.Background>
-        <ImageBrush Stretch="Fill" ImageSource="Assets/SplashScreen.png"/>
+        <ImageBrush Stretch="Fill" ImageSource="Assets/pKEm0Q6I6vA.jpg"/>
     </Page.Background>
 
     <Page.BottomAppBar>
@@ -20,8 +20,8 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Margin="10" Text="Playlists" FontSize="{ThemeResource TextStyleExtraExtraLargeFontSize}"></TextBlock>
-        <ListView Background="#B2000000" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="1" x:Name="Playlists" ItemsSource="{Binding}">
+        <TextBlock Grid.Row="0" Margin="10" Text="Playlists:" FontSize="{ThemeResource TextStyleExtraExtraLargeFontSize}"></TextBlock>
+        <ListView Background="#7F000000" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="1" x:Name="Playlists" ItemsSource="{Binding}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
