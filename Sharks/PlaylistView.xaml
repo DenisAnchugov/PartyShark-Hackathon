@@ -1,0 +1,46 @@
+﻿<Page
+    x:Class="Sharks.PlaylistView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Sharks"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Background>
+        <ImageBrush Stretch="Fill" ImageSource="Assets/SplashScreen.png"/>
+    </Page.Background>
+
+    <Page.BottomAppBar>
+        <CommandBar Background="#E51F1F1F">
+            <AppBarButton Icon="Add" Label="Add song" Click="Add_OnClick"></AppBarButton>           
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="PlaylistName" Grid.Row="0" Margin="10" Text="{Binding}" FontSize="{ThemeResource TextStyleExtraExtraLargeFontSize}"></TextBlock>
+        <ListView Grid.Row="1" Background="#7F0A0101" x:Name="PlayListView" ItemsSource="{Binding songs}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>                           
+                        </Grid.ColumnDefinitions>
+                        <AppBarButton Grid.Column="0" DataContext="{Binding}" IsCompact="True" Icon="Like" Click="Like_OnClick"></AppBarButton>
+                        <TextBlock Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" Text="{Binding karma }"></TextBlock>
+                        <AppBarButton Grid.Column="2" DataContext="{Binding}" IsCompact="True" Icon="Dislike" Click="Dislike_OnClick"></AppBarButton>
+                        <TextBlock Margin="10,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="3" TextWrapping="Wrap" Text="{Binding}" FontSize="{ThemeResource TextStyleLargeFontSize}"></TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ProgressRing x:Name="Loading" Grid.Row="1" IsActive="False"></ProgressRing>
+    </Grid>
+</Page>

@@ -9,11 +9,11 @@ namespace Sharks
 {
     public class Song
     {
-        [JsonIgnore]
         public int id { get; set; }
         public int soundCloudID { get; set; }
         public string songTitle { get; set; }
         public bool isPlayed { get; set; }
+        public int karma { get; set; }
         public int playlist { get; set; }
 
         public override string ToString()

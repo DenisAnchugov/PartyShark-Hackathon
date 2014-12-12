@@ -1,25 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Phone.UI.Input;
-using Windows.Storage;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
-using Windows.Media.Capture;
-using Windows.Storage;
-using Windows.UI.Xaml.Media.Imaging;
 
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
@@ -36,10 +20,7 @@ namespace Sharks
             this.InitializeComponent();
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
-        }
-
-        
-
+        }       
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
         /// </summary>
@@ -56,7 +37,7 @@ namespace Sharks
             try
             {
                 var access = new DataAccess();
-                var playlists = await access.GetPlayLists();
+                var playlists = await access.GetPlayListsAsync();
                 Playlists.DataContext = playlists;
             }
             catch (Exception)
@@ -77,7 +58,7 @@ namespace Sharks
 
         private void Playlist_OnClick(object sender, RoutedEventArgs e)
         {
-            var button = sender as Button;
+            var button = sender as HyperlinkButton;
 
             if (button != null)
             {

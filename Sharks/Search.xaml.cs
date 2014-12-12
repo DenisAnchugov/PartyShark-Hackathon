@@ -58,7 +58,7 @@ namespace Sharks
         {
             Loading.IsActive = true;
             var access = new DataAccess();
-            var results = await access.GetSongs(SearchBox.Text);
+            var results = await access.GetSongsAsync(SearchBox.Text);
             SearchResult.DataContext = results;
             Loading.IsActive = false;
         }

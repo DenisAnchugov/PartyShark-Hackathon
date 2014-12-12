@@ -11,20 +11,18 @@ namespace Sharks
 {
     class DataAccess
     {
-        public async Task<List<SearchEntity>> GetSongs(string searchParameter)
+        public async Task<List<SearchEntity>> GetSongsAsync(string searchParameter)
         {
             var httpClient = new HttpClinet();
             var response = await httpClient.GetAsync(new Uri("https://api.soundcloud.com/tracks?client_id=b365d76bf1520df0559a12bd6fee5519&q=" + searchParameter));
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<SearchEntity>>(response));
         }
-
-        public async Task<Playlist> GetPlaylist(int id)
+        public async Task<Playlist> GetPlaylistAsync(int id)
         {
             var httpClient = new HttpClinet();
             var response = await httpClient.GetAsync(new Uri("http://172.16.0.127:8000/api/playlists/" + id));
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<Playlist>(response));
         }
-
         public async Task<string> SendAsync(SearchEntity song, int playlistId)
         {
             var httpClient = new HttpClinet();
@@ -32,12 +30,23 @@ namespace Sharks
             string message = await Task.Factory.StartNew(() => JsonConvert.SerializeObject(s));
             return await httpClient.PostAsync(new Uri("http://172.16.0.127:8000/api/songs/"), message);
         }
-
-        public async Task<List<Playlist>> GetPlayLists()
+        public async Task<List<Playlist>> GetPlayListsAsync()
         {
             var httpClient = new HttpClinet();
             var response = await httpClient.GetAsync(new Uri("http://172.16.0.127:8000/api/playlists/"));
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<List<Playlist>>(response));           
-        } 
+        }
+        public async Task VoteAsync(int id, char t)
+        {
+            try
+            {
+                var httpClient = new HttpClinet();
+                await httpClient.GetAsync(new Uri("http://172.16.0.127:8000/api/vote/" + id + "/" + t));
+            }
+            catch (Exception exception)
+            {               
+                throw exception;
+            }
+        }
     }
 }

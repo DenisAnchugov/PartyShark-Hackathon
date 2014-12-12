@@ -21,14 +21,14 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Margin="10" Text="Playlists" FontSize="{ThemeResource TextStyleExtraExtraLargeFontSize}"></TextBlock>
-        <ListView Background="#7F0A0101" Grid.Row="1" x:Name="Playlists" ItemsSource="{Binding}">
+        <ListView Background="#7F0A0101" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="1" x:Name="Playlists" ItemsSource="{Binding}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Button BorderThickness="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" Click="Playlist_OnClick" FontSize="{ThemeResource TextStyleLargeFontSize}" Content="{Binding}"></Button>
+                        <HyperlinkButton Grid.Column="0" Margin="10,0,0,0" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="{ThemeResource TextStyleExtraExtraLargeFontSize}" Click="Playlist_OnClick" Content="{Binding}"></HyperlinkButton>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
